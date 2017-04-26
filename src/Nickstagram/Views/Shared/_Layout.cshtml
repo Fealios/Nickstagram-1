@@ -13,17 +13,17 @@
                 <ul class="nav navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                        <li>
                             @using (Html.BeginForm("Logoff", "Home"))
                             {
+                                <li>
                                 <input type="submit" class="btn btn-danger" value="Log Out" />
+                                </li>
                             }
-                        </li>
                         }
                         else
                         {
 
-                    <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                            <li>@Html.ActionLink("Register", "Register", "Home")</li>
                             <li>@Html.ActionLink("Login", "Login", "Home")</li>
                         }
 

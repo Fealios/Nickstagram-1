@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Nickstagram.ViewModels.PostViewModel
+
+<h1>Add Post</h1>
+
+@using (Html.BeginForm("Upload", "UserPage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="files" />
+
+    @Html.HiddenFor(model => model.UserId)
+
+    @Html.LabelFor(model => model.Description)
+    @Html.EditorFor(model => model.Description)
+
+    <input type="submit" value="Post" />
+}

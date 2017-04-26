@@ -8,9 +8,10 @@ using Nickstagram.Models;
 namespace Nickstagram.Migrations
 {
     [DbContext(typeof(NickstagramDbContext))]
-    partial class NickstagramDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170426174311_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -128,17 +129,9 @@ namespace Nickstagram.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
-
                     b.Property<string>("ImagePath");
 
-                    b.Property<int>("Likes");
-
-                    b.Property<string>("PostUserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PostUserId");
 
                     b.ToTable("Posts");
                 });
@@ -227,13 +220,6 @@ namespace Nickstagram.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Nickstagram.Models.Post", b =>
-                {
-                    b.HasOne("Nickstagram.Models.User", "PostUser")
-                        .WithMany()
-                        .HasForeignKey("PostUserId");
                 });
         }
     }
