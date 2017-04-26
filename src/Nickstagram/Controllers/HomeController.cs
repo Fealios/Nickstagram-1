@@ -18,7 +18,8 @@ namespace Nickstagram.Controllers
         private readonly SignInManager<User> _signInManager;
         public IActionResult Index()
         {
-            return View();
+            
+            return View(_db.Posts.ToList());
         }
 
         public HomeController (UserManager<User> userManager, SignInManager<User> signInManager, NickstagramDbContext db)
@@ -67,7 +68,6 @@ namespace Nickstagram.Controllers
             }
         }
 
-        [HttpPost]
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();

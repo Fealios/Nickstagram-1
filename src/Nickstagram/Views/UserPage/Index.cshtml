@@ -2,6 +2,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model IEnumerable<Nickstagram.Models.Post>
+
 <h1>User Page</h1>
+
+@foreach (var post in Model)
+{
+    <div>
+        <img src="@post.ImagePath" />
+        <h2>"@post.Description"</h2>
+        <h3>Likes: @post.Likes</h3>
+    </div>
+}
+
 
 @Html.ActionLink("Add new Picture", "AddPost", new { id = ViewBag.UserId })

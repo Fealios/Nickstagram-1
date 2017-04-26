@@ -22,6 +22,7 @@ namespace Nickstagram
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddMvc();
             services.AddEntityFramework()
                 .AddDbContext<NickstagramDbContext>(options =>
@@ -33,6 +34,7 @@ namespace Nickstagram
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseStaticFiles();
             app.UseIdentity();
             app.UseMvc(routes =>
             {

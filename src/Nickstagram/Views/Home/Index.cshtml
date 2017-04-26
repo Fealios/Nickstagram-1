@@ -2,4 +2,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model IEnumerable<Nickstagram.Models.Post>
+
 <h1>Front Page</h1>
+
+@foreach (var post in Model)
+{
+    <div class="holder">
+        <img class="image" src="@post.ImagePath" />
+        <div class="middle">
+            <div class="text">
+                <h2>"@post.Description"</h2>
+            </div>
+        </div>
+
+    </div>
+
+}
