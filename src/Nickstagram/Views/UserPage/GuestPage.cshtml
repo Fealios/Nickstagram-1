@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Nickstagram.ViewModels.ViewUser
+
+<h1>@Model.ViewedUser.UserName</h1>
+<h3>Posts: @Model.PostCount </h3>
+
+<input class="follow-btn" type="button" value="Follow" onclick="location.href='@Url.Action("Follow", "UserPage", new { viewedId = Model.ViewedUserId })'" />
+<div class="row">
+    <ul class="post-list">
+        @foreach (var post in Model.Posts)
+        {
+            <li>
+                <div class="col-md-4">
+                    <li>
+                        <img src="@post.ImagePath" />
+                        <h2>"@post.Description"</h2>
+                        <h3>Likes: @post.Likes</h3>
+                    </li>
+
+                </div>
+
+            </li>
+        }
+    </ul>
+</div>

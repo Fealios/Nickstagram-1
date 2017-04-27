@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Nickstagram.Models;
 using Nickstagram.ViewModels;
 using Microsoft.AspNetCore.Identity;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Nickstagram.Controllers
 {
@@ -21,6 +21,7 @@ namespace Nickstagram.Controllers
             
             return View(_db.Posts.ToList());
         }
+
 
         public HomeController (UserManager<User> userManager, SignInManager<User> signInManager, NickstagramDbContext db)
         {
@@ -60,7 +61,8 @@ namespace Nickstagram.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "UserPage", new { model.UserName });
+                var thisUser = _db.Users.FirstOrDefault(users => users.UserName == model.UserName);
+                return RedirectToAction("Index", "UserPage", new { id = thisUser.Id });
             }
             else
             {
@@ -76,7 +78,12 @@ namespace Nickstagram.Controllers
 
         public IActionResult Users()
         {
-            return View(_db.Users.ToList());
+            UsersPageViewModel viewModel = new UsersPageViewModel
+            {
+                Users = _db.Users.ToList(),
+                CurrentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+            };
+            return View(viewModel);
         }
 
     }

@@ -27,7 +27,22 @@ namespace Nickstagram.Controllers
             _db = db;
             _environment = environment;
         }
-        public IActionResult Index(string id)
+
+        public IActionResult Index()
+        {
+            String currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var posts = _db.Posts.Include(post => post.PostUser).Where(post => post.PostUser.Id == currentUserId).ToList();
+            ViewUser viewModel = new ViewUser
+            {
+                CurrentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                Posts = posts,
+                PostCount = posts.Count,
+                ViewedUser = _db.Users.FirstOrDefault(user => user.Id == currentUserId)
+            };
+            return View(viewModel);
+        }
+
+        public IActionResult GuestPage(string id)
         {
             var posts = _db.Posts.Include(post => post.PostUser).Where(post => post.PostUser.Id == id).ToList();
             ViewUser viewModel = new ViewUser
@@ -41,15 +56,14 @@ namespace Nickstagram.Controllers
             return View(viewModel);
         }
         
-        public async Task<IActionResult> Follow(string viewedId)
+        public IActionResult Follow(string viewedId)
         {
             var currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = _db.Users.Include(user => user.Following).FirstOrDefault(user => user.Id == currentUserId);
-            var viewedUser = _db.Users.Include(user => user.Following).FirstOrDefault(user => user.Id == viewedId);
-            currentUser.Following.Add(viewedUser);
+            var currentUser = _db.Users.Include(user => user.Followers).FirstOrDefault(user => user.Id == currentUserId);
+            var viewedUser = _db.Users.Include(user => user.Followers).FirstOrDefault(user => user.Id == viewedId);
+            currentUser.Followers.Add(viewedUser);
             _db.SaveChanges();
-            return RedirectToAction("Index", new { id = viewedId });
-
+            return RedirectToAction("GuestPage", new { id = viewedId });
         }
 
         //handling adding new content
@@ -75,11 +89,10 @@ namespace Nickstagram.Controllers
                 }
             }
             var user = _db.Users.FirstOrDefault(users => users.Id == newPost.UserId);
-            //var post = new Post { ImagePath = ".\\..\\" + filePath.Substring(filePath.IndexOf("wwwroot")), Description = newPost.Description, PostUser = user };
             var post = new Post { ImagePath = "/uploads/" + fileName, Description = newPost.Description, PostUser = user };
             _db.Posts.Add(post);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = user.Id } );
         }
         //end handling new content
     }

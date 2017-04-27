@@ -2,11 +2,15 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<Nickstagram.Models.User>
 
-@foreach(var user in Model)
+@model Nickstagram.ViewModels.UsersPageViewModel
+
+@foreach(var user in Model.Users)
 {
-    @Html.ActionLink(user.UserName, "Index", "UserPage", new { id = user.Id })
+    if(@user.Id != Model.CurrentUserId)
+    {
+        @Html.ActionLink(user.UserName, "GuestPage", "UserPage", new { id = user.Id })
+    }
     <br />
 
 }

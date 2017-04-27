@@ -206,12 +206,17 @@ C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Startup.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\TablesAttribute.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Controllers\HomeController.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Controllers\UserPageController.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Filters\MyActionFilter.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426174311_initial.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426174311_initial.Designer.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426204143_images.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426204143_images.Designer.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427012033_follow.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427012033_follow.Designer.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427152652_clone.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427152652_clone.Designer.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427190231_followers.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427190231_followers.Designer.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\NickstagramDbContextModelSnapshot.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Models\NickstagramDbContext.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Models\Post.cs
@@ -219,4 +224,5 @@ C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Models\User.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\LoginViewModel.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\PostViewModel.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\RegisterViewModel.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\UsersPageViewModel.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\ViewUser.cs

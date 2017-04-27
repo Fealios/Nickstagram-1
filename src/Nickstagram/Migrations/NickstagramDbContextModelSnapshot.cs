@@ -243,7 +243,7 @@ namespace Nickstagram.Migrations
             modelBuilder.Entity("Nickstagram.Models.User", b =>
                 {
                     b.HasOne("Nickstagram.Models.User")
-                        .WithMany("Following")
+                        .WithMany("Followers")
                         .HasForeignKey("UserId");
                 });
         }

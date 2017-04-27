@@ -9,5 +9,10 @@ namespace Nickstagram.Tests
 {
     public class PostTest
     {
+        [Fact]
+        public void testRegistration()
+        {
+
+        }
     }
 }
