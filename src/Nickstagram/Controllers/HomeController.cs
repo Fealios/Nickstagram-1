@@ -36,7 +36,7 @@ namespace Nickstagram.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register (RegisterViewModel model)
+        public async Task<IActionResult> RegisterPost (RegisterViewModel model)
         {
             var user = new User { UserName = model.UserName };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
