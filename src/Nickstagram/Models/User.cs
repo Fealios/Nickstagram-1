@@ -8,6 +8,6 @@ namespace Nickstagram.Models
 {
     public class User : IdentityUser
     {
-
+        public virtual ICollection<User> Following { get; set; }
     }
 }

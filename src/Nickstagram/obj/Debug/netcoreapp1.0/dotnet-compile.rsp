@@ -210,6 +210,8 @@ C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426174311_
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426174311_initial.Designer.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426204143_images.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170426204143_images.Designer.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427012033_follow.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\20170427012033_follow.Designer.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Migrations\NickstagramDbContextModelSnapshot.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Models\NickstagramDbContext.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Models\Post.cs
@@ -217,3 +219,4 @@ C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\Models\User.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\LoginViewModel.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\PostViewModel.cs
 C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\RegisterViewModel.cs
+C:\Users\epicodus\Desktop\Nickstagram\src\Nickstagram\ViewModels\ViewUser.cs

@@ -74,5 +74,10 @@ namespace Nickstagram.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Users()
+        {
+            return View(_db.Users.ToList());
+        }
+
     }
 }

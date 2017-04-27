@@ -1,0 +1,12 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Nickstagram.Models.User>
+
+@foreach(var user in Model)
+{
+    @Html.ActionLink(user.UserName, "Index", "UserPage", new { id = user.Id })
+    <br />
+
+}

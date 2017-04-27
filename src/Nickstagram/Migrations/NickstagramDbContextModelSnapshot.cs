@@ -177,6 +177,8 @@ namespace Nickstagram.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
+                    b.Property<string>("UserId");
+
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
@@ -188,6 +190,8 @@ namespace Nickstagram.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -234,6 +238,13 @@ namespace Nickstagram.Migrations
                     b.HasOne("Nickstagram.Models.User", "PostUser")
                         .WithMany()
                         .HasForeignKey("PostUserId");
+                });
+
+            modelBuilder.Entity("Nickstagram.Models.User", b =>
+                {
+                    b.HasOne("Nickstagram.Models.User")
+                        .WithMany("Following")
+                        .HasForeignKey("UserId");
                 });
         }
     }

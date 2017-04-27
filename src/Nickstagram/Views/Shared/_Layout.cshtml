@@ -15,6 +15,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>@Html.ActionLink("Log Out", "LogOff", "Home")</li>
+                            <li>@Html.ActionLink("User", "Index", "UserPage")</li>
      
                         }
                         else
@@ -26,6 +27,7 @@
 
 
                     <li>@Html.ActionLink("Home", "Index", "Home", null)</li>
+                    <li>@Html.ActionLink("All Users", "Users", "Home")</li>
                 </ul>
 
             </div>

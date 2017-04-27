@@ -10,6 +10,7 @@ using Nickstagram.ViewModels;
 using Nickstagram.Models;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Nickstagram.Controllers
 {
@@ -18,20 +19,37 @@ namespace Nickstagram.Controllers
 
         private readonly NickstagramDbContext _db;
         private IHostingEnvironment _environment;
+        private readonly UserManager<User> _userManager;
 
-        public UserPageController(IHostingEnvironment environment, NickstagramDbContext db)
+        public UserPageController(IHostingEnvironment environment, NickstagramDbContext db, UserManager<User> userManager)
         {
+            _userManager = userManager;
             _db = db;
             _environment = environment;
         }
-        public IActionResult Index()
+        public IActionResult Index(string id)
+        {
+            var posts = _db.Posts.Include(post => post.PostUser).Where(post => post.PostUser.Id == id).ToList();
+            ViewUser viewModel = new ViewUser
+            {
+                CurrentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                ViewedUserId = id,
+                Posts = posts,
+                PostCount = posts.Count,
+                ViewedUser = _db.Users.FirstOrDefault(user => user.Id == id)
+            };
+            return View(viewModel);
+        }
+        
+        public async Task<IActionResult> Follow(string viewedId)
         {
             var currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            ViewBag.UserId = currentUserId;
-            var posts = _db.Posts.Include(post => post.PostUser).Where(post => post.PostUser.Id == currentUserId).ToList();
-            ViewBag.PostCount = posts.Count;
-            ViewBag.User = _db.Users.FirstOrDefault(user => user.Id == currentUserId);
-            return View(posts);
+            var currentUser = _db.Users.Include(user => user.Following).FirstOrDefault(user => user.Id == currentUserId);
+            var viewedUser = _db.Users.Include(user => user.Following).FirstOrDefault(user => user.Id == viewedId);
+            currentUser.Following.Add(viewedUser);
+            _db.SaveChanges();
+            return RedirectToAction("Index", new { id = viewedId });
+
         }
 
         //handling adding new content
